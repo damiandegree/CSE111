@@ -44,3 +44,5 @@ print(f"Sales tax amount: {sales_tax:.2f}")
 total = subtotal + sales_tax
 
 print(f"Total: {total:.2f}")
+
+#This is a assignment from the byu-idaho university
