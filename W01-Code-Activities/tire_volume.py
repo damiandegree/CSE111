@@ -12,14 +12,35 @@ import math
 from datetime import datetime
 
 with open("volume.txt","at") as volumes:
+    print("")
+    print("Enter the measures of your tire:")
+    while True:
+            try:
+                width = int(input("Enter the width of your tire in mm: "))
+            except ValueError:
+                 print("Introduce a valid number.")
+                 continue
+            try:
+                ratio = int(input("Enter the aspect ratio: "))
+            except ValueError:
+                 print("Introduce a valid number.")
+                 continue
+            try:
+                diameter = int(input("Enter the diamenter of the wheel in inches: "))
+            except ValueError:
+                 print("Introduce a valid number.")
+                 continue
+            
+            volume = round((math.pi * width**2 * ratio * (width * ratio + 2540 * diameter))/10000000000,2)
+            print(f"The volume of your tire is: {volume} liters.") 
 
-    print("Please enter the measures of your tire.")
-    
-    width = float(input("Enter the width of yout tire in mm: "))
-    ratio = float(input("Enter the aspect ratio: "))
-    diameter = float(input("Enter the diamenter of the wheel in inches: "))
-    volume = round((math.pi * width**2 * ratio * (width * ratio + 2540 * diameter))/10000000000,2)
-    print(f"The volume of your tire is: {volume} liters.")
-    
-    print(f"{width}/{ratio:}R{diameter}, V = {volume}L",file = volumes)
+            print(f"{width}/{ratio}R{diameter}, V = {volume}L",end="\n",file = volumes, flush=False)
+            option = input("Continue?: YES/NO: ").lower()
+
+            if option == "no":
+                break
+            elif option == "yes":
+                 continue
+            else:
+                print("Type a correct answer.")
         
