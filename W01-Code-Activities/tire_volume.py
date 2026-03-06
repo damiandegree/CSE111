@@ -34,13 +34,18 @@ with open("volume.txt","at") as volumes:
             volume = round((math.pi * width**2 * ratio * (width * ratio + 2540 * diameter))/10000000000,2)
             print(f"The volume of your tire is: {volume} liters.") 
 
-            print(f"{width}/{ratio}R{diameter}, V = {volume}L",end="\n",file = volumes, flush=False)
-            option = input("Continue?: YES/NO: ").lower()
-
+            current_day = datetime.now()
+            data_day = current_day.strftime("%d/%m/%Y")
+            print(data_day , width, ratio , diameter , volume, sep=",", end="\n", file = volumes, flush=False)
+            
+            try:
+                option = str(input("Continue?: YES/NO: ").lower())
+            except ValueError:
+                 print("That is not a valid answer.")
+                 continue
             if option == "no":
                 break
             elif option == "yes":
                  continue
             else:
                 print("Type a correct answer.")
-        
