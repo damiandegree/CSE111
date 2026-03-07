@@ -17,16 +17,25 @@ with open("volume.txt","at") as volumes:
     while True:
             try:
                 width = int(input("Enter the width of your tire in mm: "))
+                if width == 0:
+                     print("Introduce a number greater than 0.")
+                     continue
             except ValueError:
                  print("Introduce a valid number.")
                  continue
             try:
                 ratio = int(input("Enter the aspect ratio: "))
+                if ratio == 0:
+                     print("Introduce a number greater than 0.")
+                     continue
             except ValueError:
                  print("Introduce a valid number.")
                  continue
             try:
                 diameter = int(input("Enter the diamenter of the wheel in inches: "))
+                if diameter == 0:
+                     print("Introduce a number grater than 0.")
+                     continue
             except ValueError:
                  print("Introduce a valid number.")
                  continue
@@ -36,7 +45,7 @@ with open("volume.txt","at") as volumes:
 
             current_day = datetime.now()
             data_day = current_day.strftime("%d/%m/%Y")
-            print(data_day , width, ratio , diameter , volume, sep=",", end="\n", file = volumes, flush=False)
+            print(data_day , width, ratio , diameter , volume, sep=", ", end="\n", file = volumes, flush=False)
             
             try:
                 option = str(input("Continue?: YES/NO: ").lower())
