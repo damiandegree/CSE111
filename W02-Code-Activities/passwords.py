@@ -14,7 +14,7 @@ def main():
 #Provides the user input loop. The loop asks the user for a password to test. 
 # If that password is anything but "q" or "Q" call the password_strength function and report 
 # the results to the user. If the user enters "q" or "Q", quit the program.
-    password = input("Enter a password to test:")
+    password = input("Enter a password to test. Type Q to quit the programm: ")
     #I have to add the loop but I organized the requirements
     print(password)
 
