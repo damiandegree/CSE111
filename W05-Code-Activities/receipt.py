@@ -1,29 +1,59 @@
 import csv
+from datetime import datetime,date
+
 
 def main():
 
     PRODUCT_INDEX = 0
+    PRODUCT_NAME = 1
+    PRODUCT_PRICE = 2
+    
+
 
     print("All products")
-    products_dic = read_dictionary("products.csv",PRODUCT_INDEX) 
+    try:
+        products_dic = read_dictionary("products.csv",PRODUCT_INDEX)
+    
+    except FileNotFoundError:
+        print("File not found, review the name or if the file exist.")
+
 
     print(products_dic)
+    print("")
+
+    
 
     with open("request.csv","rt") as request_list:
 
         next (request_list)
 
+        subtotal = 0
+        number_of_items = 0
+
+        print("Inko Emporium")
+        print(" ")
+
         for i in request_list:
             line = i.split(",")
             product_required = line[0]
-            quantity = line[1]
-
-
-            print("Request items:")
+            quantity = int(line[1])
+            product_request = products_dic[product_required]
+            price = float(product_request[PRODUCT_PRICE])
+            subtotal += price * quantity
+            number_of_items += quantity
             
-            
+            print(f"{product_request[PRODUCT_NAME]}: {quantity} @ {product_request[PRODUCT_PRICE]}")
+        
+        sales_tax = round(subtotal * 0.06,2)
+        total = subtotal + sales_tax
+        today = datetime.now()
 
-
+        print(f"Number of items: {number_of_items}")
+        print(f"Subtotal: ${round(subtotal,2)}")
+        print(f"Sales tax: {sales_tax}")
+        print(f"Total: {total}")
+        print("Thank you for shopping at the Inkom Emporium.")
+        print(f"{today.strftime("%a %b %d %H:%M:%S %Y")}")
 
     pass
 
